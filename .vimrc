@@ -24,6 +24,9 @@ set mouse=a
 " Turn on syntax highlighting
 syntax on
 
+" Enable true colors
+set termguicolors
+
 " === Turn Off Swap Files ===
 
 " Disable swap files
@@ -34,7 +37,6 @@ set nobackup
 
 " Disable writebackup files
 set nowb
-
 
 " === Automatic Installation of Plug (Vim-Plug) ===
 
@@ -55,8 +57,20 @@ call plug#end()
 
 " === Plugins settings ===
 
-" Theme
+" --- Theme ---
 colorscheme onedark
 
-" Statusbar
+" --- Statusbar ---
 let g:lightline = {'colorscheme': 'onedark'}
+
+" === NERDTree Mappings ===
+
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+
+" === Close Tab if NERDTree is the Only Window ===
+
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
