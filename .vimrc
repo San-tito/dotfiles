@@ -1,7 +1,7 @@
 " Set compatibility to Vim only.
 set nocompatible
 
-" ================ General Config ====================
+" === General Config ===
 
 " Line numbers are good
 set relativenumber
@@ -24,7 +24,7 @@ set mouse=a
 " Turn on syntax highlighting
 syntax on
 
-" ================ Turn Off Swap Files ==============
+" === Turn Off Swap Files ===
 
 " Disable swap files
 set noswapfile
@@ -35,3 +35,28 @@ set nobackup
 " Disable writebackup files
 set nowb
 
+
+" === Automatic Installation of Plug (Vim-Plug) ===
+
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" === Plugins (Plug) ===
+
+call plug#begin('~/.vim/plugged')
+    Plug 'joshdick/onedark.vim'             " Theme
+    Plug 'itchyny/lightline.vim'            " Lightline
+    Plug 'jiangmiao/auto-pairs'             " Insert or delete brackets, parens, quotes in pair
+    Plug 'preservim/nerdtree'               " Tree explorer
+call plug#end()
+
+" === Plugins settings ===
+
+" Theme
+colorscheme onedark
+
+" Statusbar
+let g:lightline = {'colorscheme': 'onedark'}
