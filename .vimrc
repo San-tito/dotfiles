@@ -27,9 +27,6 @@ syntax on
 " Enable true colors
 set termguicolors
 
-" Set Background transparent
-highlight Normal guibg=NONE ctermbg=NONE
-
 " === Turn Off Swap Files ===
 
 " Disable swap files
@@ -54,6 +51,9 @@ call plug#end()
 
 " --- Theme ---
 colorscheme onedark
+
+" Set Background transparent
+highlight Normal guibg=NONE ctermbg=NONE
 
 " --- Statusbar ---
 let g:lightline = {'colorscheme': 'onedark'}
