@@ -27,6 +27,9 @@ syntax on
 " Enable true colors
 set termguicolors
 
+" Set Background transparent
+highlight Normal guibg=NONE ctermbg=NONE
+
 " === Turn Off Swap Files ===
 
 " Disable swap files
