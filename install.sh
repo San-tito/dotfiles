@@ -9,18 +9,21 @@ WARNING='\033[1;33m'
 ERROR='\033[1;31m'
 RESET='\033[0m'
 
+# Log file for submodule updates
+LOG_FILE=submodule_update.log
+
 # Header
 printf "\n${HEADER}Dotfiles Santito Install Script${RESET}\n"
 
-# Clone dotfiles repository with submodules
+# Clone dotfiles repository with submodules, log submodule updates
 printf "${SUCCESS}Cloning dotfiles repository with submodules...${RESET}\n"
-git clone --recurse-submodules https://github.com/San-tito/dotfiles
+git clone --quiet --recurse-submodules https://github.com/San-tito/dotfiles 2>&1 | tee $LOG_FILE
 
 # Ask for confirmation to copy everything
-read -p "$(printf "${WARNING}Do you want to copy all dotfiles to your home directory? (y/n): ${RESET}")" -n 1 -r
-echo    # Move to a new line after user input
+printf "${WARNING}Do you want to copy all dotfiles to your home directory? (y/n): ${RESET}"
+read REPLY
 
-if [[ $REPLY =~ ^[Yy]$ ]]; then
+if [ "$REPLY" = "y" ] || [ "$REPLY" = "Y" ]; then
     # Copy dotfiles content to home directory
     printf "${SUCCESS}Copying dotfiles content to home directory...${RESET}\n"
     cp -r dotfiles/* ~
