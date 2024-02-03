@@ -3,13 +3,13 @@
 	url = https://github.com/junegunn/vim-plug.git
 [submodule ".zsh/themes/spaceship"]
 	path = .zsh/themes/spaceship
-	url = https://github.com:spaceship-prompt/spaceship-prompt.git
+	url = https://github.com/spaceship-prompt/spaceship-prompt.git
 [submodule ".zsh/plugins/fast-syntax-highlighting"]
 	path = .zsh/plugins/fast-syntax-highlighting
-	url = https://github.com:zdharma-zmirror/fast-syntax-highlighting.git
+	url = https://github.com/zdharma-zmirror/fast-syntax-highlighting.git
 [submodule ".zsh/plugins/zsh-autosuggestions"]
 	path = .zsh/plugins/zsh-autosuggestions
-	url = https://github.com:zsh-users/zsh-autosuggestions.git
+	url = https://github.com/zsh-users/zsh-autosuggestions.git
 [submodule ".zsh/plugins/zsh-completions"]
 	path = .zsh/plugins/zsh-completions
-	url = https://github.com:zsh-users/zsh-completions.git
+	url = https://github.com/zsh-users/zsh-completions.git
