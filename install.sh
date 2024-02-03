@@ -34,7 +34,7 @@ if [ "$REPLY" = "y" ] || [ "$REPLY" = "Y" ]; then
             --exclude=".gitmodules" \
             --exclude=".git" \
             --exclude="install.sh" \
-            -av --no-perms dotfiles/ ~;
+            -avR --no-perms dotfiles/ ~;
 
     # Optionally, remove the cloned repository if desired
     # rm -rf dotfiles
