@@ -29,7 +29,7 @@ read -r REPLY
 if [ "$REPLY" = "y" ] || [ "$REPLY" = "Y" ]; then
     # Copy dotfiles content to home directory
     printf "${SUCCESS}Copying dotfiles content to home directory...${RESET}\n"
-    cp -r dotfiles/* ~
+    rsync -av --exclude="README.md" --exclude="LICENSE" --exclude=".gitmodules" --exclude=".git" dotfiles/ ~
 
     # Optionally, remove the cloned repository if desired
     # rm -rf dotfiles
