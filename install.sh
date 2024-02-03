@@ -12,9 +12,15 @@ RESET='\033[0m'
 # Header
 printf "\n${HEADER}Dotfiles Santito Install Script${RESET}\n"
 
+# Check if the dotfiles directory already exists
+if [ -d "dotfiles" ]; then
+    printf "${WARNING}The 'dotfiles' directory already exists. Aborting installation.${RESET}\n"
+    exit 1
+fi
+
 # Clone dotfiles repository with submodules, log submodule updates
 printf "${SUCCESS}Cloning dotfiles repository with submodules...${RESET}\n"
-git clone --quiet --recurse-submodules https://github.com/San-tito/dotfiles 2> >(grep -E 'Cloning|Receiving') > /dev/null
+git clone --recurse-submodules https://github.com/San-tito/dotfiles 2> >(grep -E 'Cloning|Receiving' | sed 's/^/  /')
 
 # Ask for confirmation to copy everything
 echo -e "${WARNING}Do you want to copy all dotfiles to your home directory? (y/n): ${RESET}\c"
