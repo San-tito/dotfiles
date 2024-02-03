@@ -20,7 +20,7 @@ fi
 
 # Clone dotfiles repository with submodules, log submodule updates
 printf "${SUCCESS}Cloning dotfiles repository with submodules...${RESET}\n"
-git clone --recurse-submodules https://github.com/San-tito/dotfiles 2> >(grep -E 'Cloning|Receiving' | sed 's/^/  /')
+git clone --recurse-submodules https://github.com/San-tito/dotfiles 2> >(grep -E 'Cloning')
 
 # Ask for confirmation to copy everything
 echo -e "${WARNING}Do you want to copy all dotfiles to your home directory? (y/n): ${RESET}\c"
