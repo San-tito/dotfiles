@@ -1,5 +1,5 @@
 # $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$HOME/Library/Python/3.11/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your zsh.
 export ZSH="$HOME/.zsh"

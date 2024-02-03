@@ -1,3 +1,15 @@
 [submodule ".vim/autoload"]
 	path = .vim/autoload
 	url = https://github.com/junegunn/vim-plug.git
+[submodule ".zsh/themes/spaceship"]
+	path = .zsh/themes/spaceship
+	url = git@github.com:spaceship-prompt/spaceship-prompt.git
+[submodule ".zsh/plugins/fast-syntax-highlighting"]
+	path = .zsh/plugins/fast-syntax-highlighting
+	url = git@github.com:zdharma-zmirror/fast-syntax-highlighting.git
+[submodule ".zsh/plugins/zsh-autosuggestions"]
+	path = .zsh/plugins/zsh-autosuggestions
+	url = git@github.com:zsh-users/zsh-autosuggestions.git
+[submodule ".zsh/plugins/zsh-completions"]
+	path = .zsh/plugins/zsh-completions
+	url = git@github.com:zsh-users/zsh-completions.git
