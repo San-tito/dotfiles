@@ -1,3 +1,6 @@
+# VI keys
+bindkey -v
+
 # $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
