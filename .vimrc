@@ -45,6 +45,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'itchyny/lightline.vim'            " Lightline
     Plug 'jiangmiao/auto-pairs'             " Insert or delete brackets, parens, quotes in pair
     Plug 'preservim/nerdtree'               " Tree explorer
+    Plug 'ryanoasis/vim-devicons'           " Adds icons
 call plug#end()
 
 " === Plugins settings ===
