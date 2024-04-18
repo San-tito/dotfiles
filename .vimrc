@@ -59,12 +59,18 @@ highlight Normal guibg=NONE ctermbg=NONE
 " --- Statusbar ---
 let g:lightline = {'colorscheme': 'onedark'}
 
-" === NERDTree Mappings ===
+" === Mappings ===
 
+nnoremap <left> :echo "Use h to move!!"<CR>
+nnoremap <right> :echo "Use l to move!!"<CR>
+nnoremap <up> :echo "Use k to move!!"<CR>
+nnoremap <down> :echo "Use j to move!!"<CR>
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
+
+
 
 " === Close Tab if NERDTree is the Only Window ===
 
