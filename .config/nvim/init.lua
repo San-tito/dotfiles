@@ -5,21 +5,11 @@
 --  /____/\__,_/_/ /_/\__/_/\__/\____/    https://gitlab.com/santito
 --
 
-
---[[ 
-
-./lua/santito/*.lua
-  This is where configuration live.
-
---]]
-
--- Setup options.
 -- See `./lua/santito/options.lua`
-require "santito.options"
+require("santito.options")
 
--- Setup Keymaps.
 -- See `./lua/santito/keymaps.lua`
-require "santito.keymaps"
+require("santito.keymaps")
 
 -- Leader key -> " "
 vim.g.mapleader = " "
@@ -29,33 +19,33 @@ vim.g.maplocalleader = " "
 vim.g.have_nerd_font = true
 
 -- [[ Install `lazy.nvim` plugin manager ]]
-local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system {
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "--single-branch",
-    "https://github.com/folke/lazy.nvim.git",
-    lazypath,
-  }
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"--single-branch",
+		"https://github.com/folke/lazy.nvim.git",
+		lazypath,
+	})
 end
 vim.opt.runtimepath:prepend(lazypath)
 
 require("lazy").setup("plugins", {
-  ui = {
-    icons = {
-      cmd = "⌘",
-      config = "🛠",
-      event = "📅",
-      ft = "📂",
-      init = "⚙",
-      keys = "🗝",
-      plugin = "🔌",
-      runtime = "💻",
-      source = "📄",
-      start = "🚀",
-      task = "📌",
-    },
-  },
+	ui = {
+		icons = {
+			cmd = "⌘",
+			config = "🛠",
+			event = "📅",
+			ft = "📂",
+			init = "⚙",
+			keys = "🗝",
+			plugin = "🔌",
+			runtime = "💻",
+			source = "📄",
+			start = "🚀",
+			task = "📌",
+		},
+	},
 })
