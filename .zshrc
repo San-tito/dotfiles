@@ -1,8 +1,14 @@
 # VI keys
 bindkey -v
 
-# $PATH.
+# PATH.
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+
+# EDITOR.
+export EDITOR="nvim"
+
+# MANPAGER.
+export MANPAGER="nvim +Man!"
 
 # Path to your zsh.
 export ZSH="$HOME/.zsh"
