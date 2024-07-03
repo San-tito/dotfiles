@@ -1,45 +1,69 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# Dotfiles Santito Install Script
+function msg() {
+  local text="$1"
+  local div_width="80"
+  printf "%${div_width}s\n" ' ' | tr ' ' -
+  printf "%s\n" "$text"
+}
 
-# ANSI color variables
-HEADER='\033[1;34m'
-SUCCESS='\033[1;32m'
-WARNING='\033[1;33m'
-ERROR='\033[1;31m'
-RESET='\033[0m'
+function confirm() {
+  local question="$1"
+  while true; do
+    msg "$question"
+    read -p "[y]es or [n]o (default: no) : " -r answer
+    case "$answer" in
+      y | Y | yes | YES | Yes)
+        return 0
+        ;;
+      n | N | no | NO | No | *[[:blank:]]* | "")
+        return 1
+        ;;
+      *)
+        msg "Please answer [y]es or [n]o."
+        ;;
+    esac
+  done
+}
 
-# Header
-printf "\n${HEADER}Dotfiles Santito Install Script${RESET}\n"
+function main() {
 
-# Check if the dotfiles directory already exists
-if [ -d "dotfiles" ]; then
-    printf "${WARNING}The 'dotfiles' directory already exists. Aborting installation.${RESET}\n"
+  print_logo
+
+  if confirm "Would you like to copy dotfiles to your home directory?"; then
+     copy_dotfiles
+  fi
+}
+
+function copy_dotfiles() {
+  local download_dir="$(mktemp -d)"
+  readonly download_dir
+
+  echo "cloning dotfiles"
+  if ! git clone --recurse-submodules --progress --depth 1 \
+    "https://github.com/san-tito/dotfiles.git" "$download_dir/dotfiles"; then
+    echo "Failed to clone repository."
     exit 1
-fi
-
-# Clone dotfiles repository with submodules, log submodule updates
-printf "${SUCCESS}Cloning dotfiles repository with submodules...${RESET}\n"
-git clone --recurse-submodules https://github.com/San-tito/dotfiles 2> >(grep -E 'Cloning')
-
-# Ask for confirmation to copy everything
-echo -e "${WARNING}Do you want to copy all dotfiles to your home directory? (y/n): ${RESET}\c"
-read -r REPLY
-
-if [ "$REPLY" = "y" ] || [ "$REPLY" = "Y" ]; then
-    # Copy dotfiles content to home directory
-    printf "${SUCCESS}Copying dotfiles content to home directory...${RESET}\n"
-    rsync --exclude="README.md" \
+  fi
+  echo "copying dotfiles"
+  pushd "$download_dir"
+  rsync --exclude="README.md" \
             --exclude="LICENSE" \
             --exclude=".gitmodules" \
             --exclude=".git" \
             --exclude="install.sh" \
-            -av --no-perms dotfiles/ ~;
+            -av --no-perms $download_dir/dotfiles/ ~;
+  popd
+  echo "dotfiles copy complete!"
+}
 
-    # Optionally, remove the cloned repository if desired
-    # rm -rf dotfiles
+function print_logo() {
+  cat <<'EOF'
 
-    printf "${SUCCESS}Dotfiles installed successfully!${RESET}\n"
-else
-    printf "${ERROR}Installation canceled. No files were copied.${RESET}\n"
-fi
+ █▀▄ ▄▀▄ ▀█▀ █▀ █ █   ██▀ ▄▀▀
+ █▄▀ ▀▄▀  █  █▀ █ █▄▄ █▄▄ ▄██
+
+EOF
+}
+
+main "$@"
