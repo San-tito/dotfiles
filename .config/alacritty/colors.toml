@@ -1,35 +1,30 @@
-[colors.primary]
-background = "#181616"
-foreground = "#c5c9c5"
+#     _____             __  _ __
+#    / ___/____ _____  / /_(_) /_____
+#    \__ \/ __ `/ __ \/ __/ / __/ __ \   Santito
+#   ___/ / /_/ / / / / /_/ / /_/ /_/ /   https://github.com/San-tito
+#  /____/\__,_/_/ /_/\__/_/\__/\____/    https://gitlab.com/santito
+#
 
-[colors.selection]
-background = "#2D4F67"
-foreground = "#C8C093"
+[colors.primary]
+background = "#090A0B"
+foreground = "#E6DFE0"
 
 [colors.normal]
-black = "#0d0c0c"
-blue = "#8ba4b0"
-cyan = "#8ea4a2"
-green = "#8a9a7b"
-magenta = "#a292a3"
-red = "#c4746e"
-white = "#C8C093"
-yellow = "#c4b28a"
+black   = "#282828"
+red     = "#e06c75"
+green   = "#98c379"
+yellow  = "#e5c07b"
+blue    = "#61afef"
+magenta = "#c678dd"
+cyan    = "#56b6c2"
+white   = "#E6DFE0"
 
 [colors.bright]
-black = "#a6a69c"
-blue = "#7FB4CA"
-cyan = "#7AA89F"
-green = "#87a987"
-magenta = "#938AA9"
-red = "#E46876"
-white = "#c5c9c5"
-yellow = "#E6C384"
-
-[[colors.indexed_colors]]
-index = 16
-color = "#b6927b"
-
-[[colors.indexed_colors]]
-index = 17
-color = "#b98d7b"
+black   = "#282828"
+red     = "#e06c75"
+green   = "#98c379"
+yellow  = "#e5c07b"
+blue    = "#61afef"
+magenta = "#c678dd"
+cyan    = "#56b6c2"
+white   = "#E6DFE0"
