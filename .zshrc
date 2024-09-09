@@ -6,6 +6,7 @@
 #
 
 ### Environment
+export ZSH="$HOME/.zsh"
 export TERM="xterm-256color"
 export EDITOR="nvim"
 export MANPAGER="nvim +Man!"
