@@ -55,3 +55,4 @@ source $ZSH/themes/spaceship/spaceship.zsh-theme
 source $ZSH/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source $ZSH/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 fpath=($ZSH/plugins/zsh-completions/src $fpath)
+rm -f ~/.zcompdump; compinit
