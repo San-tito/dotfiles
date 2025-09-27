@@ -1,0 +1,38 @@
+* {
+    font-family: "CaskaydiaMono Nerd Font";
+}
+
+.button-box .button-icon {
+    display: none;
+}
+
+/* Tab bar */
+
+toolbarbutton#scrollbutton-up, toolbarbutton#scrollbutton-down {
+    /* Hide tab scroll buttons */
+    display: none;
+}
+
+.browser-toolbar > * #alltabs-button {
+    /* Hide tab drop-down list */
+    display: none;
+}
+
+.browser-toolbar > * #new-tab-button {
+    /* Hide new-tab button */
+    display: none;
+}
+
+#PersonalToolbar {
+    visibility: collapse !important;
+}
+
+#navigator-toolbox:hover > #PersonalToolbar {
+    visibility: visible !important;
+}
+
+/* remove maximum/minimum  width restriction of sidebar */
+#sidebar {
+    max-width: none !important;
+    min-width: 0px !important;
+}
