@@ -1,58 +1,143 @@
 #     _____             __  _ __
-#    / ___/____ _____  / /_(_) /_____
-#    \__ \/ __ `/ __ \/ __/ / __/ __ \   Santito
-#   ___/ / /_/ / / / / /_/ / /_/ /_/ /   https://github.com/San-tito
-#  /____/\__,_/_/ /_/\__/_/\__/\____/    https://gitlab.com/santito
+#    / ___/____ _____  / /_(_) /_____       Santito
+#    \__ \/ __ `/ __ \/ __/ / __/ __ \      https://github.com/San-tito
+#   ___/ / /_/ / / / / /_/ / /_/ /_/ /      https://gitlab.com/santito
+#  /____/\__,_/_/ /_/\__/_/\__/\____/
 #
 
-### Environment
-export ZSH="$HOME/.zsh"
+# ---------------------------------------------------------------
+# EXIT IF NOT INTERACTIVE
+# ---------------------------------------------------------------
+[[ $- != *i* ]] && return
+
+
+# ---------------------------------------------------------------
+# SHELL
+# ---------------------------------------------------------------
+
+# History
+HISTFILE=~/.zsh_history
+HISTSIZE=50000
+SAVEHIST=$HISTSIZE
+setopt inc_append_history share_history hist_ignore_all_dups
+setopt autocd no_beep interactivecomments
+unsetopt nomatch
+
+# PATH
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+
+# Completion
+autoload -Uz compinit && compinit
+zstyle ':completion:*' menu select
+bindkey -v   # vi mode
+
+
+# ---------------------------------------------------------------
+# ALIASES
+# ---------------------------------------------------------------
+
+# Git shortcuts
+alias gcm='git commit -m'
+alias gcam='git commit -a -m'
+alias gcad='git commit -a --amend'
+
+# eza replacements
+if command -v eza &>/dev/null; then
+  alias ls='eza -lh --group-directories-first --icons=auto'
+  alias lsa='ls -a'
+  alias lt='eza --tree --level=2 --long --icons --git'
+  alias lta='lt -a'
+fi
+
+# zoxide wrapper
+if command -v zoxide &>/dev/null; then
+  alias cd="zd"
+  zd() {
+    if [[ $# -eq 0 ]]; then
+      builtin cd ~
+    elif [[ -d $1 ]]; then
+      builtin cd "$1"
+    else
+      if z "$@"; then
+        printf "\U000F17A9 "
+        pwd
+      else
+        echo "Error: Directory not found"
+      fi
+    fi
+  }
+fi
+
+# Open files using xdg-open
+open() {
+  xdg-open "$@" >/dev/null 2>&1 &
+}
+
+# Editor
+alias vim='nvim'
+
+
+# ---------------------------------------------------------------
+# PROMPT
+# ---------------------------------------------------------------
+if [[ -d ~/.zsh/themes/spaceship ]]; then
+  source ~/.zsh/themes/spaceship/spaceship.zsh-theme
+fi
+
+
+# ---------------------------------------------------------------
+# INIT (plugins, tools)
+# ---------------------------------------------------------------
+
+# mise
+if command -v mise &>/dev/null; then
+  eval "$(mise activate zsh)"
+fi
+
+# zoxide
+if command -v zoxide &>/dev/null; then
+  eval "$(zoxide init zsh)"
+fi
+
+# Autosuggestions
+if [[ -d ~/.zsh/plugins/zsh-autosuggestions ]]; then
+  source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
+# Syntax highlighting (must be *last*)
+if [[ -d ~/.zsh/plugins/zsh-syntax-highlighting ]]; then
+  source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+
+# ---------------------------------------------------------------
+# ENVIRONMENT VARIABLES
+# ---------------------------------------------------------------
 export TERM="xterm-256color"
 export EDITOR="nvim"
 export MANPAGER="nvim +Man!"
+export SUDO_EDITOR="$EDITOR"
+export BAT_THEME="ansi"
 
-### VI MODE
-bindkey -v
 
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
+# ---------------------------------------------------------------
+# INPUTRC-LIKE OPTIONS (Readline compat)
+# ---------------------------------------------------------------
+# These only affect programs using readline (like bash), not zsh.
+# Kept because you included them intentionally.
 
-### PATH
-export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-
-### XDG_*_HOME
-if [ -z "$XDG_CONFIG_HOME" ] ; then
-    export XDG_CONFIG_HOME="$HOME/.config"
-fi
-if [ -z "$XDG_DATA_HOME" ] ; then
-    export XDG_DATA_HOME="$HOME/.local/share"
-fi
-if [ -z "$XDG_CACHE_HOME" ] ; then
-    export XDG_CACHE_HOME="$HOME/.cache"
-fi
-
-### ALIASES ###
-alias vim="nvim"
-alias df='df -h'
-alias free='free -m'
-alias grep='grep --color=auto'
-alias ga='git add'
-alias gaa='git add --all'
-alias gb='git branch'
-alias gcl='git clone --recurse-submodules'
-alias gcam='git commit --all --message'
-alias gfa='git fetch --all --tags --prune'
-alias gl='git pull'
-alias gp='git push'
-alias gst='git status'
-alias gloga='git log --oneline --decorate --graph --all'
-alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash'
-
-### THEME
-source $ZSH/themes/spaceship/spaceship.zsh-theme
-
-### PLUGINS
-source $ZSH/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-source $ZSH/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-fpath=($ZSH/plugins/zsh-completions/src $fpath)
-rm -f ~/.zcompdump; compinit
+set meta-flag on
+set input-meta on
+set output-meta on
+set convert-meta off
+set completion-ignore-case on
+set completion-prefix-display-length 2
+set show-all-if-ambiguous on
+set show-all-if-unmodified on
+set mark-symlinked-directories on
+set match-hidden-files off
+set page-completions off
+set completion-query-items 200
+set visible-stats on
+set skip-completed-text on
+set colored-stats on
