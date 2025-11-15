@@ -106,7 +106,6 @@ fi
 # ENVIRONMENT VARIABLES
 # ---------------------------------------------------------------
 export TERM="xterm-256color"
-export EDITOR="nvim"
 export MANPAGER="nvim +Man!"
 export SUDO_EDITOR="$EDITOR"
 export BAT_THEME="ansi"

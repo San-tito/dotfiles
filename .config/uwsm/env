@@ -1,2 +1,6 @@
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+
 # Set default terminal and editor
 source ~/.config/uwsm/default
+
+command -v mise &>/dev/null && eval "$(mise activate zsh)"
