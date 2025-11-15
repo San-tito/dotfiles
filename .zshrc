@@ -41,14 +41,6 @@ alias gcm='git commit -m'
 alias gcam='git commit -a -m'
 alias gcad='git commit -a --amend'
 
-# eza replacements
-if command -v eza &>/dev/null; then
-  alias ls='eza -lh --group-directories-first --icons=auto'
-  alias lsa='ls -a'
-  alias lt='eza --tree --level=2 --long --icons --git'
-  alias lta='lt -a'
-fi
-
 # zoxide wrapper
 if command -v zoxide &>/dev/null; then
   alias cd="zd"
