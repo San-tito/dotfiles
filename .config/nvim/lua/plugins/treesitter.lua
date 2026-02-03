@@ -11,6 +11,8 @@ return {
       "markdown",
       "markdown_inline",
       "query",
+      "ruby",
+      "typst",
       "vim",
       "vimdoc",
     }
